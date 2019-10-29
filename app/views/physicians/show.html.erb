@@ -1,0 +1,97 @@
+<p id="notice"><%= notice %></p>
+
+<div class = "physician">
+  <h2>
+    <%= @physician.name %>
+  </h2>
+<h3>
+  <strong>Specialty:</strong>
+  <%= @physician.specialty %>
+</h3>
+</div>
+<hr>
+
+<h3>Office Locations</h3>
+<div class = "location-table">
+  <table class = "blueTable">
+    <tbody>
+      <tr>
+        <th>Street Address</th>
+        <th>Zip Code</th>
+        <th>Phone</th>
+      </tr>
+      <% @physician.offices.each do |office| %>
+      <tr>
+        <td><%= office.street_address %></td>
+        <td><%= office.zip %></td>
+        <td><%= office.phone %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h3>Current Appointments</h3>
+<div class = "location-table">
+  <table class = "blueTable">
+    <tbody>
+      <tr>
+        <th>Patient Name</th>
+        <th>Date of Appointment</th>
+      </tr>
+      <% @physician.appointments.each do |appointment|%>
+      <tr>
+        <td><%= appointment.patient.name %></td>
+        <td><%= appointment.visit %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<%= link_to 'Edit', edit_physician_path(@physician) %> |
+<%= link_to 'Back', physicians_path %>
+
+<style>
+.location-table {
+    margin: 10px;
+    padding: 10px;
+}
+
+table.blueTable {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+table.blueTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+}
+
+table.blueTable tr:nth-child(even) {
+    background: #D0E4F5;
+}
+
+table.blueTable td, table.blueTable th {
+    border: 1px solid #AAAAAA;
+    padding: 3px 2px;
+}
+</style>
